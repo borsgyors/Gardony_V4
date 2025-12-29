@@ -2,7 +2,6 @@
 
 import { SearchableEventList } from '@/components/SearchableEventList';
 import { searchData } from '@/data/searchData';
-import { events } from '@/data/events';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -20,17 +19,17 @@ import SearchBar from '@/components/SearchBar';
  */
 
 export default function SearchDemoPage() {
-  // Transform events to match EventData interface
-  const eventData = events.map((event) => ({
-    id: event.id,
-    title: event.title,
-    date: event.date,
-    time: event.time,
-    location: event.location,
-    description: event.description,
-    category: 'Esemény',
-    type: 'event',
-  }));
+  // Sample event data for demonstration
+  const eventData: Array<{
+    id: string;
+    title: string;
+    date?: string;
+    time?: string;
+    location?: string;
+    description?: string;
+    category: string;
+    type: string;
+  }> = [];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
