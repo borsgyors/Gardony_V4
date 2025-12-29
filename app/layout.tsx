@@ -32,7 +32,10 @@ export default function RootLayout({
           {/* Skip link for keyboard users */}
           <a href="#content" className="skip-link">Ugrás a tartalomra</a>
           <SiteHeader />
-          <main id="content" role="main">{children}</main>
+          {/* Main content: minimal pt-[1px] ensures space for fixed navbar without overflow */}
+          <main id="content" role="main" className="pt-[1px]">
+            {children}
+          </main>
           <SiteFooter />
         </LanguageProvider>
       </body>

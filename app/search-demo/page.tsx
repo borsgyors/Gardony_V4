@@ -2,6 +2,7 @@
 
 import { SearchableEventList } from '@/components/SearchableEventList';
 import { searchData } from '@/data/searchData';
+import { events } from '@/data/events';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -19,6 +20,17 @@ import SearchBar from '@/components/SearchBar';
  */
 
 export default function SearchDemoPage() {
+  // Transform events to match EventData interface
+  const eventData = events.map((event) => ({
+    id: event.id,
+    title: event.title,
+    date: event.date,
+    time: event.time,
+    location: event.location,
+    description: event.description,
+    category: 'Esemény',
+    type: 'event',
+  }));
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
@@ -102,8 +114,13 @@ export default function SearchDemoPage() {
               </CardContent>
             </Card>
 
-            {/* Searchable Event List (simplified, no external data) */}
-            <SearchableEventList />
+            {/* Searchable Event List */}
+            <SearchableEventList
+              events={eventData}
+              searchData={searchData.filter((item) => item.type === 'event')}
+              title="Gárdonyi Események 2026"
+              emptyMessage="Nincs a keresésnek megfelelő esemény"
+            />
           </TabsContent>
 
           {/* Basic SearchBar */}
