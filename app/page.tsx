@@ -28,6 +28,7 @@ import Image from "next/image"
 import { WaveSection } from "../components/WaveSection"
 import { useEffect, useMemo, useState } from "react"
 import { getNewsSorted } from "@/data/news"
+import ReadMoreCTA from "@/components/ReadMoreCTA"
 
 export default function HomePage() {
   const { t } = useLanguage()
@@ -251,7 +252,7 @@ export default function HomePage() {
       <section className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] pt-16 sm:pt-20 h-[60vh] min-h-[500px] sm:h-[70vh] sm:min-h-[600px] z-0 hero-bg overflow-hidden">
 
         <div className="relative container mx-auto h-full flex flex-col justify-center items-center text-center text-white px-4">
-          <div className="animate-in fade-in slide-in-from-bottom-8 duration-1000 max-w-5xl xl:absolute xl:top-[220px] xl:left-[156px] xl:w-[1020px] xl:h-[197px] xl:text-left xl:items-start">
+          <div className="animate-in fade-in slide-in-from-bottom-8 duration-1000 max-w-5xl xl:absolute xl:top-[170px] xl:left-[156px] xl:w-[1020px] xl:h-[197px] xl:text-left xl:items-start">
 
             <h1 className="font-bold mb-6 drop-shadow-2xl text-[#FFFFFF]">
               A Velencei-tó fővárosa
@@ -260,12 +261,22 @@ export default function HomePage() {
               Természet, nyugalom, közösség – minden napra.            </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center xl:justify-start items-stretch sm:items-center">
               <Link href="/turizmus" className="w-full sm:w-auto">
-                <Button variant="heroPrimary" size="cta" className="w-full sm:w-[193px] font-medium" style={{ borderRadius: '9999px' }}>
+                <Button
+                  variant="heroPrimary"
+                  size="cta"
+                  className="w-full sm:w-[193px] font-medium text-[16px] sm:text-[18px] h-[44px] sm:h-[56px] px-5 sm:px-6"
+                  style={{ borderRadius: '9999px' }}
+                >
                   Fedezd fel
                 </Button>
               </Link>
               <Link href="/bemutatkozas" className="w-full sm:w-auto">
-                <Button variant="heroAccent" size="cta" className="w-full sm:w-[201px] font-medium" style={{ borderRadius: '9999px' }}>
+                <Button
+                  variant="heroAccent"
+                  size="cta"
+                  className="w-full sm:w-[201px] font-medium text-[16px] sm:text-[18px] h-[44px] sm:h-[56px] px-5 sm:px-6"
+                  style={{ borderRadius: '9999px' }}
+                >
                   Programok
                 </Button>
               </Link>
@@ -319,7 +330,7 @@ export default function HomePage() {
               <Link
                 key={index}
                 href={item.href}
-                className="no-underline"
+                className="no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#2E4D58] rounded-lg sm:rounded-xl md:rounded-2xl"
               >
                 {/* Smooth transform-based micro-interaction: scale only, no layout shift */}
                 <div
@@ -357,10 +368,10 @@ export default function HomePage() {
       </section>
 
       {/* News & Events Section with Waves */}
-      <div className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-[#B3D7D366] pt-[40px] pb-[40px] overflow-hidden">
+      <div className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-[#B3D7D366] pt-16 pb-16 sm:pt-[40px] sm:pb-[40px] overflow-hidden">
 
         {/* Top wave */}
-        <svg className="absolute top-0 left-0 w-full h-24" viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <svg className="absolute top-0 left-0 w-full h-12 sm:h-24" viewBox="0 0 1440 80" preserveAspectRatio="none">
           <path d="M0,40 C360,-40 1080,120 1440,40 L1440,0 L0,0 Z" fill="#ffffff" />
         </svg>
 
@@ -379,7 +390,7 @@ export default function HomePage() {
             <button
               type="button"
               onClick={handlePrev}
-              className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-[#2E4D58] bg-white text-[#2E4D58] flex items-center justify-center"
+              className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-[#2E4D58] bg-white text-[#2E4D58] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#2E4D58]"
               aria-label="Korábbi hírek"
               disabled={currentIndex === 0}
               style={currentIndex === 0 ? { opacity: 0.5, cursor: "not-allowed" } : undefined}
@@ -401,7 +412,7 @@ export default function HomePage() {
                     className="flex-shrink-0 box-border px-[12.5px]"
                     style={{ width: `${100 / itemsPerView}%` }}
                   >
-                    <Card className="h-full border-none shadow-lg rounded-xl overflow-hidden bg-white">
+                    <Card className="h-full border-none shadow-lg rounded-xl overflow-hidden bg-white flex flex-col">
                       <div className="relative h-[223px] overflow-hidden flex-shrink-0">
                         <Image
                           src={news.image}
@@ -425,14 +436,14 @@ export default function HomePage() {
                         </CardTitle>
                       </CardHeader>
 
-                      <CardContent className="px-4 pb-4 pt-[15px] space-y-5">
-                        <CardDescription className="w-[328px] text-base leading-6 font-normal line-clamp-3 m-0">
+                      <CardContent className="px-4 pb-4 pt-[15px] space-y-5 flex-1 flex flex-col">
+                        <CardDescription className="w-full text-base leading-6 font-normal line-clamp-3 m-0">
                           {news.excerpt}
                         </CardDescription>
-                        <div className="flex justify-end">
+                        <div className="mt-auto flex justify-end">
                           <Link
                             href={`/hirek/${news.slug}`}
-                            className="pt-10 flex items-center gap-2 text-[14px] leading-5 font-medium tracking-[0.1px] text-[#007A6C] no-underline"
+                            className="pt-10 flex items-center gap-2 text-[14px] leading-5 font-medium tracking-[0.1px] text-[#007A6C] no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#007A6C] rounded-md"
                             style={{ fontFamily: 'Poppins' }}
                           >
                             Tovább olvasom
@@ -449,7 +460,7 @@ export default function HomePage() {
             <button
               type="button"
               onClick={handleNext}
-              className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-[#2E4D58] bg-white text-[#2E4D58] flex items-center justify-center"
+              className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-[#2E4D58] bg-white text-[#2E4D58] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#2E4D58]"
               aria-label="Régebbi hírek"
               disabled={currentIndex >= maxIndex}
               style={currentIndex >= maxIndex ? { opacity: 0.5, cursor: "not-allowed" } : undefined}
@@ -460,7 +471,7 @@ export default function HomePage() {
           <div className="flex justify-center mt-8">
             <Link href="/hirek" className="w-full md:w-auto">
               <Button
-                className="flex items-center justify-center gap-2 w-[400px] text-[24px] font-bold tracking-[0px] text-[#007A6C] px-0 py-0"
+                className="flex items-center justify-center gap-2 w-full md:w-[400px] text-[24px] font-bold tracking-[0px] text-[#007A6C] px-0 py-0"
                 style={{ borderRadius: '9999px', height: '60px' }}
               >
                 Elolvasom az összes hírt
@@ -470,7 +481,7 @@ export default function HomePage() {
           </div>
         </div>
         {/* Bottom wave */}
-        <svg className="absolute bottom-0 left-0 w-full h-24" viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <svg className="absolute bottom-0 left-0 w-full h-12 sm:h-24" viewBox="0 0 1440 80" preserveAspectRatio="none">
           <path d="M0,40 C360,-40 1080,120 1440,40 L1440,80 L0,80 Z" fill="#ffffff" />
         </svg>
       </div>
@@ -554,6 +565,14 @@ export default function HomePage() {
                 <div className="p-5 flex-1 flex flex-col gap-3">
                   <h4 className="text-xl font-semibold font-[Inter] text-[#111827]">{item.title}</h4>
                   <p className="text-sm sm:text-base leading-6 text-[#4B5563]">{item.description}</p>
+                  <div className="mt-auto flex justify-end">
+                    <ReadMoreCTA
+                      href="/turizmus/latnivalok-es-elmenyek"
+                      label="Tovább"
+                      ariaLabel="Látnivalók és élmények megtekintése"
+                     
+                    />
+                  </div>
                 </div>
               </article>
             ))}
@@ -561,6 +580,8 @@ export default function HomePage() {
         </div>
       </section>
 
+
+    
     </div>
   )
 }
